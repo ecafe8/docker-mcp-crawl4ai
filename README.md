@@ -2,6 +2,33 @@
 
 使用 `docker.sh` 启动或停止 `unclecode/crawl4ai:latest` 容器。
 
+## Sandbox
+
+使用独立脚本启动或停止本地的 `ghcr.io/agent-infra/sandbox:latest` 镜像：
+
+```bash
+bash sandbox.sh start
+```
+
+服务默认仅监听本机 `127.0.0.1:8080`，停止命令为：
+
+```bash
+bash sandbox.sh stop
+```
+
+可通过 `SANDBOX_PORT` 修改主机端口，例如：
+
+```bash
+SANDBOX_PORT=8088 bash sandbox.sh start
+```
+
+端口映射只在首次创建容器时生效。要更改已有容器的端口映射，请先移除容器再重新启动：
+
+```bash
+docker rm -f agent-infra-sandbox
+SANDBOX_PORT=8088 bash sandbox.sh start
+```
+
 ## 环境要求
 
 - 已安装 Docker，并且 Docker 服务正在运行。
